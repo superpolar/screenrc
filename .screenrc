@@ -8,31 +8,29 @@ vbell off
 attrcolor b ".I"
 
 # Tell screen how to set colors. AB = background, AF=foreground
-termcapinfo xterm 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm'
+#termcapinfo xterm 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm'
+termcapinfo xterm ti@:te@
 
 # Erase background with current bg color
 defbce "on"
 
 # Refresh the display when exiting programs
- altscreen on
+altscreen on
 
 # Dynamic title
-# shelltitle '$ | bash'
-
-#dont use thit to avoid screen muse
-# term xterm-256color
+shelltitle '$ | bash'
 
 # Cache 30000 lines for scroll back
-#defscrollback 30000
-
+defscrollback 30000
 
 # Set hardstatus always on
-hardstatus alwayslastline "%{= Kd} %{= Kd}%-w%{= Kr}[%{= KW}%n %t%{= Kr}]%{= Kd}%+w %-= %{KG} %D %M %d %Y%{= Kc} | %0c:%s "
+hardstatus alwayslastline
+hardstatus string " %-Lw%{= Bw}%n%f %t%{-}%+Lw"
 
-# # Set default encoding using utf8
+# Set default encoding using utf8
 defutf8 on
 
-# # Keboard binding
+# Keboard binding
 bindkey "^[z" prev
 bindkey "^[x" next
 bindkey "^[[D" prev
@@ -43,3 +41,5 @@ bindkey "^[e" split -v
 bindkey "^[w" focus
 bindkey "^[q" remove
 bindkey "^[k" kill
+bindkey -k k7 windowlist
+windowlist string "%03n: %h %=%f"
